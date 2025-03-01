@@ -1,0 +1,52 @@
+--this is pretty bad so i'm gonna leave a open source and see what happens💀💀💀
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("SENGA HUB (What is this of brand sega roblox script for sanic chase💀💀)", "Synapse")
+
+
+local MovementTab = Window:NewTab("Movement")
+local MovementSection = MovementTab:NewSection("Movement Controls")
+
+MovementSection:NewToggle("Toggle Crouch", "Toggles crouching", function(state)
+    game.Players.LocalPlayer.PlayerInfo.Crouching.Value = state
+end)
+
+MovementSection:NewSlider("Walk Speed", "Changes walk speed", 100, 21, function(value)
+    game.Players.LocalPlayer.PlayerInfo.MovementSettings.WalkSpeed.Value = value
+end)
+
+MovementSection:NewSlider("Sprint Speed", "Changes sprint speed", 100, 27, function(value)
+    game.Players.LocalPlayer.PlayerInfo.MovementSettings.SprintSpeed.Value = value
+end)
+
+MovementSection:NewSlider("Jump Power", "Changes jump power", 100, 50, function(value)
+    game.Players.LocalPlayer.PlayerInfo.MovementSettings.JumpPower.Value = value
+end)
+
+MovementSection:NewSlider("Crouch Speed", "Changes crouch speed", 100, 8, function(value)
+    game.Players.LocalPlayer.PlayerInfo.MovementSettings.CrouchSpeed.Value = value
+end)
+
+
+MovementSection:NewToggle("Infinite Jump", "Enables infinite jumping", function(state)
+    _G.InfiniteJump = state
+    game:GetService("UserInputService").JumpRequest:connect(function()
+        if _G.InfiniteJump then
+            game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+        end
+    end)
+end)
+
+
+local MiscTab = Window:NewTab("Misc")
+local MiscSection = MiscTab:NewSection("Extra Features")
+
+MiscSection:NewKeybind("Toggle UI", "Toggles the UI visibility", Enum.KeyCode.RightControl, function()
+    Library:ToggleUI()
+end)
+
+game:GetService("StarterGui"):SetCore("SendNotification",{
+    Title = "Notification",
+    Text = "Made by DaNoob/Smartlightyear",
+    Duration = 5
+})
